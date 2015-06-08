@@ -20,8 +20,6 @@ package io.github.zachohara.pictographer.gui;
 import javax.swing.JFrame;
 
 public class Window extends JFrame {
-
-	private static final int[] DEFAULT_WINDOW_SIZE = {400, 400};
 	
 	private static final long serialVersionUID = 1L;
 
