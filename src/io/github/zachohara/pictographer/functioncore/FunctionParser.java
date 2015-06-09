@@ -121,7 +121,7 @@ public abstract class FunctionParser {
 	}
 
 	public static void main(String[] args) {
-		String function = "1 - (1/2)x^2 + 3x^4 - 100x^500";
+		String function = "1 - (1/2)x^2 + 3x^4 - 100/2x^500";
 		Polynomial p = parsePolynomialFunction(function);
 		System.out.println(p);
 	}

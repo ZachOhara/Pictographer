@@ -24,7 +24,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Window extends JFrame {
+public class GraphWindow extends JFrame {
 
 	private int xMin;
 	private int xMax;
@@ -37,7 +37,7 @@ public class Window extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
-	public Window() {
+	public GraphWindow() {
 		super();
 		this.initializeWindow();
 		//TODO stub
