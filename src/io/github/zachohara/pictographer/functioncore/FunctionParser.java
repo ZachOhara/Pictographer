@@ -23,29 +23,57 @@ import java.util.List;
 public abstract class FunctionParser {
 
 	public static final String[] TERM_DELIMITERS = {"+", "-"}; 
+	public static final String[] WHITESPACE_CHARS = {" ", "\t", "\n"};
 	
 	public static Polynomial parsePolynomialFunction(String input) {
+		input = removeWhitespace(input);
+		System.out.println(input);
 		List<String> termStrings = new ArrayList<String>();
-		int i = 0;
+		int i = 1;
 		while (i < input.length()) {
 			int lastI = i;
 			while (i < input.length() && !charIsDelimiter(input.substring(i, i+1))) {
 				i++;
-				System.out.println(i);
 			}
-			termStrings.add(input.substring(lastI, i).trim());
+			termStrings.add(input.substring(lastI - 1, i));
 			i++;
 		}
 		System.out.println(termStrings);
 		Polynomial function = new Polynomial();
-		for (String term : termStrings)
-			parseTerm(function, term);
+		for (String term : termStrings) {
+			try {
+				parseTerm(function, term);
+			} catch (NumberFormatException e) {
+				// TODO: warn invalid term
+			}
+		}
 		return function;
 	}
 	
 	
 	private static void parseTerm(Polynomial addTo, String term) {
-		//TODO;
+		System.out.println(term);
+		int signum = 1;
+		if (term.startsWith("-"))
+			signum = -1;
+		if (charIsDelimiter(term.substring(0, 1)))
+			term = term.substring(1);
+		double coeff;
+		double exp;
+		if (term.indexOf("x") == -1) {
+			coeff = Double.parseDouble(term);
+			exp = 0;
+		} else {
+			if (term.indexOf("x") == 0)
+				coeff = 1;
+			else
+				coeff = Double.parseDouble(term.substring(0, term.indexOf("x")));
+			if (term.indexOf("^") == -1)
+				exp = 1;
+			else
+				exp = Double.parseDouble(term.substring(term.indexOf("^") + 1));
+		}
+		addTo.addTerm(signum * coeff, exp);
 	}
 	
 	private static boolean charIsDelimiter(String s) {
@@ -55,10 +83,30 @@ public abstract class FunctionParser {
 		}
 		return false;
 	}
+	
+	private static String removeWhitespace(String s) {
+		int i = 0;
+		while (i < s.length()) {
+			if (charIsWhitespace(s.substring(i, i+1)))
+				s = s.substring(0, i) + s.substring(i+1);
+			else
+				i++;
+		}
+		return s;
+	}
+	
+	private static boolean charIsWhitespace(String s) {
+		for (String whitespace : WHITESPACE_CHARS) {
+			if (s.equals(whitespace))
+				return true;
+		}
+		return false;
+	}
 
 	public static void main(String[] args) {
-		String function = "1 + x^2 + 3x^4 + 100x^500";
-		parsePolynomialFunction(function);
+		String function = "1 - x^2 + 3x^4 - 100x^500";
+		Polynomial p = parsePolynomialFunction(function);
+		System.out.println(p);
 	}
 
 }
