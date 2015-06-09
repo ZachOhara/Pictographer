@@ -45,6 +45,7 @@ public abstract class FunctionParser {
 				parseTerm(function, term);
 			} catch (NumberFormatException e) {
 				// TODO: warn invalid term
+				e.printStackTrace();
 			}
 		}
 		return function;
@@ -61,19 +62,35 @@ public abstract class FunctionParser {
 		double coeff;
 		double exp;
 		if (term.indexOf("x") == -1) {
-			coeff = Double.parseDouble(term);
+			coeff = parseFraction(term);
 			exp = 0;
 		} else {
 			if (term.indexOf("x") == 0)
 				coeff = 1;
 			else
-				coeff = Double.parseDouble(term.substring(0, term.indexOf("x")));
+				coeff = parseFraction(term.substring(0, term.indexOf("x")));
 			if (term.indexOf("^") == -1)
 				exp = 1;
 			else
-				exp = Double.parseDouble(term.substring(term.indexOf("^") + 1));
+				exp = parseFraction(term.substring(term.indexOf("^") + 1));
 		}
+//		System.out.println(", " + coeff + ", " + exp);
 		addTo.addTerm(signum * coeff, exp);
+	}
+	
+	private static double parseFraction(String fraction) {
+		if (fraction.startsWith("(") && fraction.endsWith(")"))
+				fraction = fraction.substring(1, fraction.length() - 1);
+		if (fraction.indexOf("(") != -1 || fraction.indexOf(")") != -1)
+			throw new NumberFormatException();
+		int slash = fraction.indexOf("/");
+		if (slash == -1) {
+			return Double.parseDouble(fraction);
+		} else {
+			double num = Double.parseDouble(fraction.substring(0, slash));
+			double den = Double.parseDouble(fraction.substring(slash + 1));
+			return num / den;
+		}
 	}
 	
 	private static boolean charIsDelimiter(String s) {
@@ -104,7 +121,7 @@ public abstract class FunctionParser {
 	}
 
 	public static void main(String[] args) {
-		String function = "1 - x^2 + 3x^4 - 100x^500";
+		String function = "1 - (1/2)x^2 + 3x^4 - 100x^500";
 		Polynomial p = parsePolynomialFunction(function);
 		System.out.println(p);
 	}
