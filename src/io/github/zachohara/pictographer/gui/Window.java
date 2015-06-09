@@ -17,9 +17,23 @@
 
 package io.github.zachohara.pictographer.gui;
 
+import io.github.zachohara.pictographer.functioncore.Polynomial;
+
+import java.awt.image.BufferedImage;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Window extends JFrame {
+
+	private int xMin;
+	private int xMax;
+	private int yMin;
+	private int yMax;
+	
+	private BufferedImage image;
+	private JPanel graph;
+	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +50,40 @@ public class Window extends JFrame {
 	
 	private void initializeWindow() {
 		//TODO stub
+	}
+	
+	public void drawGraph(Polynomial p) {
+		this.graph.removeAll();
+		
+		//TODO
+	}
+	
+	/**
+	 * Scales a number within some range to a corresponding position relative
+	 * to another range. If the absolute value of the number is below the
+	 * input range, 0 will be returned. If the absolute value of the number is
+	 * above the input range, the maximum value of the output range, but with
+	 * the same polarity as the number, will be returned. 
+	 * @param power the number to be scaled
+	 * @param inputRange a two-element array representing the lowest and
+	 * and highest values, respectively, of the range to be scaled from 
+	 * @param outputRange a two-element array representing the lowest and
+	 * and highest values, respectively, of the range to be scaled to
+	 * @return the number, scaled to the same relative position within the
+	 * output range
+	 */
+	private static double scaleToRange(double power, int[] inputRange, int[] outputRange) {
+		double signum = Math.signum(power);
+		power = Math.abs(power);
+		if (power < inputRange[0])
+			return 0;
+		if (power > inputRange[1])
+			return outputRange[1] * signum;
+		int inputDifference = inputRange[1] - inputRange[0];
+		int outputDifference = outputRange[1] - outputRange[0];
+		double posInRange = (power - inputRange[0]) / inputDifference;
+		double posOutRange = outputRange[0] + (posInRange * outputDifference);
+		return posOutRange * signum;
 	}
 
 }
