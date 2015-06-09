@@ -44,18 +44,31 @@ public class Polynomial {
 	
 	private static class Term {
 		
-		double coeffient;
-		double exponenet;
+		double coefficient;
+		double exponent;
 		
 		public Term(double c, double e) {
-			this.coeffient = c;
-			this.exponenet = e;
+			this.coefficient = c;
+			this.exponent = e;
 		}
 		
 		public double valueAtX(double x) {
-			return this.coeffient * Math.pow(x, this.exponenet);
+			return this.coefficient * Math.pow(x, this.exponent);
 		}
 		
+		@Override
+		public String toString() {
+			return this.coefficient + "x^" + this.exponent;
+		}
+		
+	}
+	
+	@Override
+	public String toString() {
+		String result = "f(x) =";
+		for (Term t : this.terms)
+			result += " " + t.toString();
+		return result;
 	}
 
 	public static void main(String[] args) {
