@@ -27,15 +27,16 @@ public abstract class FunctionParser {
 	
 	public static Polynomial parsePolynomialFunction(String input) {
 		input = removeWhitespace(input);
-		System.out.println(input);
+//		System.out.println(input);
 		List<String> termStrings = new ArrayList<String>();
-		int i = 1;
+		int i = 0;
 		while (i < input.length()) {
 			int lastI = i;
 			while (i < input.length() && !charIsDelimiter(input.substring(i, i+1))) {
 				i++;
 			}
-			termStrings.add(input.substring(lastI - 1, i));
+			termStrings.add(input.substring(Math.max(0, lastI - 1), i));
+//			System.out.println(lastI + ", " + i);
 			i++;
 		}
 		System.out.println(termStrings);
@@ -121,7 +122,8 @@ public abstract class FunctionParser {
 	}
 
 	public static void main(String[] args) {
-		String function = "1 - (1/2)x^2 + 3x^4 - 100/2x^500";
+//		String function = "1 - (1/2)x^2 + 3x^4 - 100/2x^500";
+		String function = "x";
 		Polynomial p = parsePolynomialFunction(function);
 		System.out.println(p);
 	}
