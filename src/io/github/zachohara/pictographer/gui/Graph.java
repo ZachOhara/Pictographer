@@ -6,7 +6,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Graph extends JPanel {
@@ -21,6 +20,7 @@ public class Graph extends JPanel {
 	public Graph() {
 		super();
 		this.pointList = new ArrayList<Point>();
+		this.setOpaque(false);
 	}
 	
 	@Override
@@ -42,16 +42,16 @@ public class Graph extends JPanel {
 		this.pointList.clear();
 	}
 	
-	public static void main(String[] args) {
-		Graph g = new Graph();
-		JFrame jf = new JFrame();
-		jf.setLayout(null);
-		jf.setSize(500, 500);
-		g.setSize(jf.getSize());
-		g.setLocation(0, 0);
-		g.pointList.add(new Point(10, 10));
-		jf.add(g);
-		jf.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		Graph g = new Graph();
+//		JFrame jf = new JFrame();
+//		jf.setLayout(null);
+//		jf.setSize(500, 500);
+//		g.setSize(jf.getSize());
+//		g.setLocation(0, 0);
+//		g.pointList.add(new Point(10, 10));
+//		jf.add(g);
+//		jf.setVisible(true);
+//	}
 
 }

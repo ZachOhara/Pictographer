@@ -26,11 +26,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 
 public class GraphWindow extends JFrame {
 	
 	private OptionState options;
 	
+	private JLayeredPane layerManager;
 	private BufferedImage image;
 	private Graph graph;
 	
@@ -41,10 +43,12 @@ public class GraphWindow extends JFrame {
 
 	public GraphWindow(BufferedImage bImg, OptionState optionState) {
 		super();
-		this.setImage(bImg);
+		this.image = bImg;
 		this.options = optionState;
-		this.initializeWindow();
+		this.initializeLayeredPane();
 		this.initializeGraph();
+		this.setImage(bImg);
+		this.initializeWindow();
 	}
 	
 	public void update() {
@@ -56,7 +60,6 @@ public class GraphWindow extends JFrame {
 		this.graph.clear();
 		double[] imageWidth = {0, imageWidth()};
 		double[] imageHeight = {0, this.imageHeight()};
-		this.plotGraphPoint(0, 0);
 		for (int xPix = 0; xPix < imageWidth(); xPix++) {
 			 double x = scaleToRange(xPix, imageWidth, this.options.getxRange());
 			 double y = function.valueAt(x);
@@ -82,10 +85,11 @@ public class GraphWindow extends JFrame {
 	public void setImage(BufferedImage i) {
 		this.image = i;
 		this.setSize(this.image.getWidth(), this.image.getHeight());
+		this.setLocationRelativeTo(null);
 		JComponent compImage = new JLabel(new ImageIcon(i));
 		compImage.setSize(this.image.getWidth(), this.image.getHeight());
 		compImage.setLocation(0, 0);
-		this.add(compImage);
+		this.layerManager.add(compImage, 2);
 	}
 	
 	@Override
@@ -106,11 +110,18 @@ public class GraphWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	private void initializeLayeredPane() {
+		this.layerManager = new JLayeredPane();
+		this.layerManager.setSize(this.image.getWidth(), this.image.getHeight());
+		this.layerManager.setLocation(0,0);
+		this.add(this.layerManager);
+	}
+	
 	private void initializeGraph() {
 		this.graph = new Graph();
 		this.graph.setLocation(0, 0);
 		this.graph.setSize(this.image.getWidth(), this.image.getHeight());
-		this.add(this.graph);
+		this.layerManager.add(this.graph, 1);
 	}
 	
 	/**

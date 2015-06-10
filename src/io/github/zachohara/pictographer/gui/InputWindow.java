@@ -65,7 +65,7 @@ public class InputWindow extends JFrame implements KeyListener {
 		this.setTitle(WINDOW_TITLE);
 		this.setLayout(new BorderLayout());
 		this.setSize(WINDOW_SIZE[0], WINDOW_SIZE[1]);
-		this.setLocation(- WINDOW_SIZE[0], 0);
+		this.setLocation(- (WINDOW_SIZE[0]), 0);
 		this.setLocationRelativeTo(this.mainWindow);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
