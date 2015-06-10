@@ -52,7 +52,7 @@ public class GraphWindow extends JFrame {
 	}
 	
 	public void drawGraph(Polynomial function) {
-		System.out.println(function);
+//		System.out.println(function);
 		this.graph.clear();
 		double[] imageWidth = {0, imageWidth()};
 		double[] imageHeight = {0, this.imageHeight()};
