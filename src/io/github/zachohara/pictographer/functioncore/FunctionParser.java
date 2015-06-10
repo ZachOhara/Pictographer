@@ -54,6 +54,8 @@ public abstract class FunctionParser {
 	
 	
 	private static void parseTerm(Polynomial addTo, String term) {
+		if (term.length() == 0)
+			return;
 		System.out.println(term);
 		int signum = 1;
 		if (term.startsWith("-"))
