@@ -85,7 +85,7 @@ public class GraphWindow extends JFrame {
 		JComponent compImage = new JLabel(new ImageIcon(i));
 		compImage.setSize(this.image.getWidth(), this.image.getHeight());
 		compImage.setLocation(0, 0);
-//		this.add(compImage); //TODO marker
+		this.add(compImage);
 	}
 	
 	@Override
