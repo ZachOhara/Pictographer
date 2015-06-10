@@ -31,26 +31,26 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class InputWindow extends JFrame implements KeyListener {
-	
+
 	private OptionState options;
-	
+
 	private JPanel windowSettings;
 	private JTextField xMinField;
 	private JTextField xMaxField;
 	private JTextField yMinField;
 	private JTextField yMaxField;
 	private JTextField functionField;
-	
+
 	private static final int[] WINDOW_SIZE = {400, 120};
 	private static final String WINDOW_TITLE = "Pictographer Settings";
-	
+
 	private static final int FUNCTION_FIELD_WIDTH = 28;
 	private static final int WINDOW_FIELD_WIDTH = 5;
 
 	private static final long serialVersionUID = 1L;
-	
+
 	GraphWindow mainWindow;
-	
+
 	public InputWindow(GraphWindow win, OptionState options) {
 		super();
 		this.options = options;
@@ -60,7 +60,7 @@ public class InputWindow extends JFrame implements KeyListener {
 		this.initializeWindowPanel();
 		this.initializeWindowSettings();
 	}
-	
+
 	private void initializeWindow() {
 		this.setTitle(WINDOW_TITLE);
 		this.setLayout(new BorderLayout());
@@ -71,7 +71,7 @@ public class InputWindow extends JFrame implements KeyListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addKeyListener(this);
 	}
-	
+
 	private void initializeFunctionField() {
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new FlowLayout());
@@ -81,20 +81,32 @@ public class InputWindow extends JFrame implements KeyListener {
 		bottomPanel.add(this.functionField);
 		this.add("South", bottomPanel);
 	}
-	
+
 	private void initializeWindowPanel() {
 		this.windowSettings = new JPanel();
 		this.windowSettings.setLayout(new GridLayout(2, 2));
 		this.add("Center", this.windowSettings);
 	}
-	
+
 	private void initializeWindowSettings() {
 		this.xMinField = this.initializeSetting("Min. X ");
 		this.xMaxField = this.initializeSetting("Max X ");
 		this.yMinField = this.initializeSetting("Min. Y ");
 		this.yMaxField = this.initializeSetting("Max Y ");
+		this.loadDefaultSettings();
 	}
-	
+
+	private void loadDefaultSettings() {
+		if (this.options.getxMin() != 0)
+			this.xMinField.setText("" + this.options.getxMin());
+		if (this.options.getxMax() != 0)
+			this.xMaxField.setText("" + this.options.getxMax());
+		if (this.options.getyMin() != 0)
+			this.yMinField.setText("" + this.options.getyMin());
+		if (this.options.getyMax() != 0)
+			this.yMaxField.setText("" + this.options.getyMax());
+	}
+
 	private JTextField initializeSetting(String labelText) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout());
@@ -106,15 +118,31 @@ public class InputWindow extends JFrame implements KeyListener {
 		this.windowSettings.add(panel);
 		return field;
 	}
-	
+
 	public void updateSettings() {
-		this.options.setxMin(Double.parseDouble(this.xMinField.getText()));
-		this.options.setxMax(Double.parseDouble(this.xMaxField.getText()));
-		this.options.setyMin(Double.parseDouble(this.yMinField.getText()));
-		this.options.setyMax(Double.parseDouble(this.yMaxField.getText()));
-		this.options.setFunctionString(this.functionField.getText());
-		
-		this.mainWindow.update();
+		if (this.allAreValid()) {
+			this.options.setxMin(Double.parseDouble(this.xMinField.getText()));
+			this.options.setxMax(Double.parseDouble(this.xMaxField.getText()));
+			this.options.setyMin(Double.parseDouble(this.yMinField.getText()));
+			this.options.setyMax(Double.parseDouble(this.yMaxField.getText()));
+			this.options.setFunctionString(this.functionField.getText());
+
+			this.mainWindow.update();
+		} else {
+			this.options.setFunctionString(this.functionField.getText());
+			this.mainWindow.update();
+		}
+	}
+
+	private boolean allAreValid() {
+		try {
+			return Double.parseDouble(this.xMinField.getText()) != Double.NaN
+					&& Double.parseDouble(this.xMaxField.getText()) != Double.NaN
+					&& Double.parseDouble(this.yMinField.getText()) != Double.NaN
+					&& Double.parseDouble(this.yMaxField.getText()) != Double.NaN;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 
 	public static void main(String[] args) {
