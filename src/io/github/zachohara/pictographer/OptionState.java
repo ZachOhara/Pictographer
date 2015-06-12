@@ -28,7 +28,7 @@ public class OptionState {
 	private double yMax = 9.25;
 
 	private String functionString;
-	private Polynomial functiton;
+	private Polynomial function;
 	
 	private static final String DEFUALT_FUNCTION = "5 + 2/3x - 1/13x^2 + 1/3000x^3 + 1/8000x^4 - 1/30000000x^6 - 1/370000000x^7 + 1/1200000000000x^9";
 
@@ -38,7 +38,7 @@ public class OptionState {
 //		this.yMin = 0;
 //		this.yMax = 0;
 		this.functionString = "";
-		this.functiton = null;
+		this.function = null;
 		this.setFunctionString(DEFUALT_FUNCTION); //TODO remove
 	}
 
@@ -77,7 +77,7 @@ public class OptionState {
 	}
 
 	public Polynomial getFunction() {
-		return functiton;
+		return function;
 	}
 
 	public void setxMin(double xMin) {
@@ -99,9 +99,10 @@ public class OptionState {
 	public void setFunctionString(String functionString) {
 		this.functionString = functionString;
 		try {
-			this.functiton = FunctionParser.parsePolynomialFunction(functionString);
+			this.function = FunctionParser.parsePolynomialFunction(functionString);
+			System.out.println(this.function.getLatexString());
 		} catch (NumberFormatException e) {
-			this.functiton = null;
+			this.function = null;
 		}
 	}
 

@@ -106,7 +106,7 @@ public class GraphWindow extends JFrame {
 		this.setTitle(WINDOW_TITLE);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
