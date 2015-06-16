@@ -31,3 +31,15 @@ V = \pi  \int_{0}^{25} \Bigg[ 5 + \frac{2}{3} x -\frac{1}{13} x^{2} +\frac{1}{30
 Volume solution:
 
 V = 2393.54639 \ \ cm^3
+
+Capacity integral expression:
+
+V =  \pi  \int_0^{25} (f(x) - .25) ^ 2 dx
+
+Capacity integral substitution:
+
+V = \pi  \int_{0}^{25} \Bigg[ 4.75 + \frac{2}{3} x -\frac{1}{13} x^{2} +\frac{1}{3000} x^{3} +\frac{1}{8000} x^{4} -\frac{1}{30000000} x^{6} -\frac{1}{370000000} x^{7} +\frac{1}{1200000000000} x^{9} \Bigg] ^{2} dx
+
+Capacity solution:
+
+V = 2183.69903 \ \ cm^3
