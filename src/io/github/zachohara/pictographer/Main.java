@@ -17,7 +17,7 @@
 package io.github.zachohara.pictographer;
 
 import io.github.zachohara.pictographer.gui.GraphWindow;
-import io.github.zachohara.pictographer.gui.InputWindow;
+import io.github.zachohara.pictographer.gui.SettingsWindow;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -42,7 +42,7 @@ public class Main {
 		BufferedImage image = loadImage();
 		OptionState options = new OptionState();
 		GraphWindow graphWindow = new GraphWindow(image, options);
-		InputWindow inputWindow = new InputWindow(graphWindow, options);
+		SettingsWindow inputWindow = new SettingsWindow(graphWindow, options);
 		graphWindow.setVisible(true);
 		inputWindow.setVisible(true);
 	}

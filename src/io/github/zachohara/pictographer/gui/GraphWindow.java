@@ -17,7 +17,7 @@
 package io.github.zachohara.pictographer.gui;
 
 import io.github.zachohara.pictographer.OptionState;
-import io.github.zachohara.pictographer.functioncore.Polynomial;
+import io.github.zachohara.pictographer.core.Polynomial;
 
 import java.awt.image.BufferedImage;
 

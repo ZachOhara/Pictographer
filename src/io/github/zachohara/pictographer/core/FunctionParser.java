@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.github.zachohara.pictographer.functioncore;
+package io.github.zachohara.pictographer.core;
 
 import java.util.ArrayList;
 import java.util.List;

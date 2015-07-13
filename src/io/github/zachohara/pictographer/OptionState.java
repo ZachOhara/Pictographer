@@ -16,8 +16,8 @@
 
 package io.github.zachohara.pictographer;
 
-import io.github.zachohara.pictographer.functioncore.FunctionParser;
-import io.github.zachohara.pictographer.functioncore.Polynomial;
+import io.github.zachohara.pictographer.core.FunctionParser;
+import io.github.zachohara.pictographer.core.Polynomial;
 
 /**
  * An {@code OptionState} object contains all the information inside any graph option

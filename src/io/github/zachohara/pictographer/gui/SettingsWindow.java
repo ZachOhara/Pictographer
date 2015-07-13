@@ -30,12 +30,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * An {@code InputWindow} is a {@code JFrame} that handles input from the user for the
+ * An {@code SettingsWindow} is a {@code JFrame} that handles input from the user for the
  * window settings of the graph.
  * 
  * @author Zach Ohara
  */
-public class InputWindow extends JFrame implements KeyListener {
+public class SettingsWindow extends JFrame implements KeyListener {
 
 	/**
 	 * The {@code OptionState} that all settings should be saved to.
@@ -103,13 +103,13 @@ public class InputWindow extends JFrame implements KeyListener {
 	GraphWindow mainWindow;
 
 	/**
-	 * Constructs a new {@code InputWindow} with the given owner window and option state.
+	 * Constructs a new {@code SettingsWindow} with the given owner window and option state.
 	 * 
 	 * @param win the {@code GraphWindow} that 'owns' this window, and should be notified
 	 * about any/all setting changes.
 	 * @param options the {@code OptionState} object that all setting should be stored in.
 	 */
-	public InputWindow(GraphWindow win, OptionState options) {
+	public SettingsWindow(GraphWindow win, OptionState options) {
 		super();
 		this.options = options;
 		this.mainWindow = win;
