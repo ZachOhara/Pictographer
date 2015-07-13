@@ -150,6 +150,8 @@ public class OptionState {
 
 	/**
 	 * Sets the minimum x-boundary.
+	 * 
+	 * @param xMin the new minimum x-boundary.
 	 */
 	public void setxMin(double xMin) {
 		this.xMin = xMin;
@@ -157,6 +159,8 @@ public class OptionState {
 
 	/**
 	 * Sets the maximum x-boundary.
+	 * 
+	 * @param xMax the new maximum x-boundary.
 	 */
 	public void setxMax(double xMax) {
 		this.xMax = xMax;
@@ -164,6 +168,8 @@ public class OptionState {
 
 	/**
 	 * Sets the minimum y-boundary.
+	 * 
+	 * @param yMin the new minimum y-boundary.
 	 */
 	public void setyMin(double yMin) {
 		this.yMin = yMin;
@@ -171,6 +177,8 @@ public class OptionState {
 
 	/**
 	 * Sets the maximum y-boundary.
+	 * 
+	 * @param yMax the new maximum y-boundary.
 	 */
 	public void setyMax(double yMax) {
 		this.yMax = yMax;

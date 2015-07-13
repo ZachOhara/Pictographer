@@ -61,7 +61,7 @@ public class FileSelector {
 	 * Prompts the user to select a file to use as the backdrop, and returns that file.
 	 * 
 	 * @return the file selected by the user.
-	 * @throws {@code CancellationException} if the user closed the selection dialog.
+	 * @throws CancellationException if the user closed the selection dialog.
 	 */
 	public File getFile() throws CancellationException {
 		this.dialog.setVisible(true);
