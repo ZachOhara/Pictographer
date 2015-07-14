@@ -36,7 +36,7 @@ public class Main {
 	/**
 	 * The main procedure for entire application.
 	 * 
-	 * @param args command-line arguments.
+	 * @param args command line arguments.
 	 */
 	public static void main(String[] args) {
 		BufferedImage image = loadImage();
