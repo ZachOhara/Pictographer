@@ -27,8 +27,15 @@ import javax.swing.JOptionPane;
  * 
  * @author Zach Ohara
  */
-public abstract class FunctionParser {
+public final class FunctionParser {
 
+	/**
+	 * The {@code FunctionParser} class should not be instantiable.
+	 */
+	private FunctionParser() {
+		
+	}
+	
 	/**
 	 * The set of symbols that will always separate different terms.
 	 */

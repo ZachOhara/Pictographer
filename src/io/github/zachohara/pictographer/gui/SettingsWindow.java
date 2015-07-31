@@ -40,7 +40,7 @@ public class SettingsWindow extends JFrame implements KeyListener {
 	/**
 	 * The {@code OptionState} that all settings should be saved to.
 	 */
-	private OptionState options;
+	private final OptionState options;
 
 
 	/**
@@ -100,7 +100,7 @@ public class SettingsWindow extends JFrame implements KeyListener {
 	/**
 	 * The {@code GraphWindow} that 'owns' this window.
 	 */
-	GraphWindow mainWindow;
+	private GraphWindow mainWindow;
 
 	/**
 	 * Constructs a new {@code SettingsWindow} with the given owner window and option state.

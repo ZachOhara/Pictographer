@@ -30,7 +30,7 @@ public class Polynomial {
 	/**
 	 * The list of terms that compose this polynomial.
 	 */
-	private List<Term> terms;
+	private final List<Term> terms;
 
 	/**
 	 * Constructs a new polynomial with no terms.
@@ -122,12 +122,12 @@ public class Polynomial {
 		/**
 		 * The coefficient of this term.
 		 */
-		double coefficient = 0;
+		private double coefficient = 0;
 
 		/**
 		 * The exponent of this term.
 		 */
-		double exponent = 0;
+		private double exponent = 0;
 
 
 		/**

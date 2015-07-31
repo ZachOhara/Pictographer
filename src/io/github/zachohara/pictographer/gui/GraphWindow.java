@@ -38,7 +38,7 @@ public class GraphWindow extends JFrame {
 	/**
 	 * The current state of the options panel associated with this window.
 	 */
-	private OptionState options;
+	private final OptionState options;
 
 
 	/**

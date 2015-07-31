@@ -34,12 +34,12 @@ public class FileSelector {
 	/**
 	 * The window used for the filedialog.
 	 */
-	private JFrame window;
+	private final JFrame window;
 
 	/**
 	 * The {@code FileDialog} that is displayed in the window.
 	 */
-	private FileDialog dialog;
+	private final FileDialog dialog;
 
 	/**
 	 * The title for the window.

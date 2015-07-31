@@ -35,7 +35,7 @@ public class Graph extends JPanel {
 	/**
 	 * The list of points that should be drawn on in graph.
 	 */
-	private List<Point> pointList;
+	private final List<Point> pointList;
 
 
 	/**
